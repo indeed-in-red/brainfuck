@@ -2,13 +2,17 @@ class BrainfuckProgram {
     constructor() {
         this.variables = [];
         this.pointer = 0;
+        this.iptr = 0 // instruction pointer
+        this.loops = [] // array to store loops entry pointer value
         this.string = document.getElementById("code").value;
         this.run()
     }
 
     run() {
-        [...this.string].forEach(el => {
-            switch (el) {
+
+        while(this.iptr < this.string.length) {
+
+            switch (this.string[this.iptr]) {
                 case ".":
                     this.out();
                     break;
@@ -33,10 +37,19 @@ class BrainfuckProgram {
                     this.sub();
                     break
 
+                case "[":
+                    this.newloop();
+                    break
+                
+                case "]":
+                    this.endloop();
+
                 default:
                     break;
             }
-        });
+
+            this.iptr++;
+        }
     }
 
     out() { // '.' instruction
@@ -68,5 +81,31 @@ class BrainfuckProgram {
 
     sub() {
         this.variables[this.pointer]--;
+    }
+
+    newloop() {
+        if(this.variables[this.pointer] != 0) {
+            this.loops.push(this.iptr);
+            this.iptr = p + 1;
+
+        }
+        else {
+            var x = 1;
+            var p = this.iptr + 1;
+            while(x) {
+                if(this.string[p] == '[') {
+                    x += 1;
+                }
+                else if(this.string[p] == ']') {
+                    x -= 1;
+                }
+                p++;
+            }
+            this.iptr = p;
+        }
+    }
+
+    endloop() {
+        this.iptr = this.loops.pop();
     }
 }
