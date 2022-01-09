@@ -9,6 +9,8 @@ class BrainfuckProgram {
     }
 
     run() {
+        
+        this.ptrright()
 
         while(this.iptr < this.string.length) {
 
