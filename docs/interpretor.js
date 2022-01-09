@@ -1,6 +1,6 @@
 class BrainfuckProgram {
     constructor() {
-        this.variables = [];
+        this.variables = [0];
         this.pointer = 0;
         this.iptr = 0 // instruction pointer
         this.loops = [] // array to store loops entry pointer value
@@ -55,7 +55,7 @@ class BrainfuckProgram {
     out() { // '.' instruction
         var v = this.variables[this.pointer];
         var char = String.fromCharCode(v);
-        console.log(char);
+        console.log(v);
         document.getElementById('out').innerHTML += char;
     }
 
@@ -85,7 +85,7 @@ class BrainfuckProgram {
 
     newloop() {
         if(this.variables[this.pointer] != 0) {
-            this.loops.push(this.iptr);
+            this.loops.push(this.iptr - 1);
 
         }
         else {
@@ -100,7 +100,7 @@ class BrainfuckProgram {
                 }
                 p++;
             }
-            this.iptr = p;
+            this.iptr = p - 1;
         }
     }
 
