@@ -1,6 +1,6 @@
 class BrainfuckProgram {
     constructor() {
-        this.variables = [];
+        this.variables = [0];
         this.pointer = 0;
         this.iptr = 0 // instruction pointer
         this.loops = [] // array to store loops entry pointer value
@@ -9,8 +9,6 @@ class BrainfuckProgram {
     }
 
     run() {
-        
-        this.ptrright()
 
         while(this.iptr < this.string.length) {
 
