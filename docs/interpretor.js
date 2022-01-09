@@ -56,7 +56,7 @@ class BrainfuckProgram {
         var v = this.variables[this.pointer];
         var char = String.fromCharCode(v);
         console.log(char);
-        alert(char);
+        document.getElementById('out').innerHTML += char;
     }
 
     in() { // ',' instruction
@@ -86,7 +86,6 @@ class BrainfuckProgram {
     newloop() {
         if(this.variables[this.pointer] != 0) {
             this.loops.push(this.iptr);
-            this.iptr = p + 1;
 
         }
         else {
