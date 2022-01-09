@@ -86,7 +86,6 @@ class BrainfuckProgram {
     newloop() {
         if(this.variables[this.pointer] != 0) {
             this.loops.push(this.iptr);
-            this.iptr = p + 1;
 
         }
         else {
