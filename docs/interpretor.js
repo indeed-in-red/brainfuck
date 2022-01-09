@@ -76,11 +76,11 @@ class BrainfuckProgram {
     }
 
     add() {
-        this.variables[this.pointer]++;
+        this.variables[this.pointer] += this.variables[this.pointer] != 255 ? 1 : -255;
     }
 
     sub() {
-        this.variables[this.pointer]--;
+        this.variables[this.pointer] -= this.variables[this.pointer] ? 1 : -255;
     }
 
     newloop() {
