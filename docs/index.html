@@ -3,25 +3,30 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Online Brainfuck Interpretor - Made by Dihellgo</title>
+    <title>Online Brainfuck Interpreter - Made by Dihellgo and &amp;times;</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 
 <body>
-    <div class="page_title" title="page title">
-        <h1>Brainfuck Interpretor</h1>
+    <div class="page-title" title="page title">
+        <h1>Brainfuck Interpreter</h1>
     </div>
 
-    <label for="code">Brainfuck Code:</label>
-    <br>
-    <textarea name="bf-code" id="code" cols="30" rows="10"></textarea>
+    <div id="code-part">
+        <textarea id="code" rows="10" placeholder="Code goes here..."></textarea>
+
+        <div id="bottom-line">
+
+            <button onclick="var x = new BrainfuckProgram()" id="run-button">Run</button>
+
+            <span id="out"></span>
+
+        </div>
+
+    </div>
 
     <script src="interpretor.js"></script>
-
-    <p id="out"></p>
-
-    <button onclick="x = new BrainfuckProgram()">run</button>
 
 </body>
 
