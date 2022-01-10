@@ -4,7 +4,7 @@ class BrainfuckProgram {
         this.pointer = 0;
         this.iptr = 0 // instruction pointer
         this.loops = [] // array to store loops entry pointer value
-        this.string = document.getElementById("code").value;
+        this.string = document.getElementById("code").value.replace(/\r?\n|\r|\s|\t/g, '');
         this.run()
     }
 
@@ -56,7 +56,7 @@ class BrainfuckProgram {
     out() { // '.' instruction
         var v = this.variables[this.pointer];
         var char = String.fromCharCode(v);
-        console.log(char);
+        console.log(v);
         document.getElementById('out').innerHTML += char;
     }
 
@@ -77,11 +77,11 @@ class BrainfuckProgram {
     }
 
     add() {
-        this.variables[this.pointer]++;
+        this.variables[this.pointer] += this.variables[this.pointer] != 255 ? 1 : -255;
     }
 
     sub() {
-        this.variables[this.pointer]--;
+        this.variables[this.pointer] -= this.variables[this.pointer] ? 1 : -255;
     }
 
     newloop() {
