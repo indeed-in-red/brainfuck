@@ -5,12 +5,14 @@ class BrainfuckProgram {
         this.iptr = 0 // instruction pointer
         this.loops = [] // array to store loops entry pointer value
         this.string = document.getElementById("code").value.replace(/\r?\n|\r|\s|\t/g, '');
-        this.run()
+        this.pause = false;
+        document.getElementById('out').value = '';
+        this.run();
     }
 
     run() {
-
-        while(this.iptr < this.string.length) {
+        this.pause = false;
+        while(this.iptr < this.string.length && !this.pause) {
 
             switch (this.string[this.iptr]) {
                 case ".":
@@ -53,19 +55,37 @@ class BrainfuckProgram {
         }
     }
 
+    stop() {
+        this.pause = true;
+    }
+
     out() { // '.' instruction
         var v = this.variables[this.pointer];
         var char = String.fromCharCode(v);
         console.log(v);
         document.getElementById('out').value += char;
-    }
+    };
 
     in() { // ',' instruction
         var inpelem = document.getElementById("in");
-        var inp = inpelem.value[0];
-        inpelem.value = inpelem.value.slice(1, inpelem.value.length);
-        this.variables[this.pointer] = inp.charCodeAt(0);
-    }
+        if(inpelem.value) {
+            var inp = inpelem.value[0];
+            inpelem.value = inpelem.value.slice(1, inpelem.value.length);
+            this.variables[this.pointer] = inp.charCodeAt(0);
+        }
+        else {
+            inpelem.classList.add('error-no-value');
+            inpelem.placeholder = 'Input needed';
+            this.stop();
+            inpelem.onkeyup = (e) => {
+                inpelem.classList.remove('error-no-value');
+                this.in();
+                this.run();
+                inpelem.onkeyup = (e) => {};
+                inpelem.placeholder = 'input...';
+            };
+        };
+    };
 
     ptrright() { // '>' intruction | adds 1 to the pointer
         this.pointer++;
@@ -107,6 +127,12 @@ class BrainfuckProgram {
             this.loops.pop()
         }
     }
+}
+
+var program;
+
+var newprogram = () => {
+    program = new BrainfuckProgram;
 }
 
 // ++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.
