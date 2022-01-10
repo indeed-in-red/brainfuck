@@ -43,6 +43,7 @@ class BrainfuckProgram {
                 
                 case "]":
                     this.endloop();
+                    break
 
                 default:
                     break;
@@ -85,26 +86,23 @@ class BrainfuckProgram {
 
     newloop() {
         if(this.variables[this.pointer] != 0) {
-            this.loops.push(this.iptr - 1);
+            this.loops.push(this.iptr);
 
         }
         else {
-            var x = 1;
-            var p = this.iptr + 1;
-            while(x) {
-                if(this.string[p] == '[') {
-                    x += 1;
-                }
-                else if(this.string[p] == ']') {
-                    x -= 1;
-                }
-                p++;
+            while(this.string[this.iptr] != ']') {
+                this.iptr++
             }
-            this.iptr = p - 1;
         }
     }
 
     endloop() {
-        this.iptr = this.loops.pop();
+        if(this.variables[this.pointer] != 0) {
+            this.iptr = this.loops[this.loops.length-1]
+        }
+
+        else {
+            this.loops.pop()
+        }
     }
 }
