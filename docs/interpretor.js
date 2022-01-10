@@ -57,11 +57,13 @@ class BrainfuckProgram {
         var v = this.variables[this.pointer];
         var char = String.fromCharCode(v);
         console.log(v);
-        document.getElementById('out').innerHTML += char;
+        document.getElementById('out').value += char;
     }
 
     in() { // ',' instruction
-        var inp = prompt();
+        var inpelem = document.getElementById("in");
+        var inp = inpelem.value[0];
+        inpelem.value = inpelem.value.slice(1, inpelem.value.length);
         this.variables[this.pointer] = inp.charCodeAt(0);
     }
 
