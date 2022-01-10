@@ -10,8 +10,10 @@ class BrainfuckProgram {
         this.run();
     }
 
-    run() {
+    async run() { // async to use await to avoid loop blocking
         this.pause = false;
+        document.getElementById('play-pause-button').innerHTML = 'II';
+        document.getElementById('play-pause-button').onclick = (e) => { this.stop() };
         while(this.iptr < this.string.length && !this.pause) {
 
             switch (this.string[this.iptr]) {
@@ -44,15 +46,17 @@ class BrainfuckProgram {
                     break
                 
                 case "]":
+                    await new Promise(resolve => setTimeout(resolve, 1)); // avoid blocking window with infinite loop
                     this.endloop();
                     break
 
                 default:
                     break;
             }
-
             this.iptr++;
         }
+        document.getElementById('play-pause-button').innerHTML = '▶';
+        document.getElementById('play-pause-button').onclick = (e) => { this.run() };
     }
 
     stop() {
@@ -92,18 +96,22 @@ class BrainfuckProgram {
         if(!this.variables[this.pointer]) {
             this.variables[this.pointer] = 0;
         }
+        return 0;
     }
 
     ptrleft() { // '<' instruction
         this.pointer -= this.pointer ? 1 : 0;
+        return 0;
     }
 
     add() {
         this.variables[this.pointer] += this.variables[this.pointer] != 255 ? 1 : -255;
+        return 0;
     }
 
     sub() {
         this.variables[this.pointer] -= this.variables[this.pointer] ? 1 : -255;
+        return 0;
     }
 
     newloop() {
@@ -116,6 +124,7 @@ class BrainfuckProgram {
                 this.iptr++
             }
         }
+        return 0;
     }
 
     endloop() {
@@ -126,6 +135,7 @@ class BrainfuckProgram {
         else {
             this.loops.pop()
         }
+        return 0;
     }
 }
 
