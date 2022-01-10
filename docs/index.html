@@ -14,13 +14,13 @@
     </div>
 
     <div id="code-part">
-        <textarea id="code" rows="10" placeholder="Code goes here..."></textarea>
+        <textarea id="code" rows="10" placeholder="Type your code here"></textarea>
 
         <div id="bottom-line">
 
             <button onclick="var x = new BrainfuckProgram()" id="run-button">Run</button>
-
-            <span id="out"></span>
+				<input type="text" id="in" class="in-out" placeholder="input...">
+            <input type="text" id="out" class="in-out" placeholder="...output" disabled>
 
         </div>
 

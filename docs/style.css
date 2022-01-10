@@ -35,3 +35,21 @@ body {
 #run-button:hover {
     background-color: #2c2c2c;
 }
+
+.in-out {
+	border: 3px solid #3b3b3b;
+	width: 100%;
+	border-radius: 6px;
+	padding: 12px;
+	
+}
+
+#in {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#bottom-line {
+	display: flex;
+    margin-top: 10px;
+}
