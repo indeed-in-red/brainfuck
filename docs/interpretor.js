@@ -46,7 +46,7 @@ class BrainfuckProgram {
                     break
                 
                 case "]":
-                    await new Promise(resolve => setTimeout(resolve, 1)); // avoid blocking window with infinite loop
+                    await new Promise(resolve => setTimeout(resolve, 0.1)); // avoid blocking window with infinite loop
                     this.endloop();
                     break
 
