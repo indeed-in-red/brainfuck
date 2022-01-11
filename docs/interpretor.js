@@ -5,12 +5,16 @@ class BrainfuckProgram {
         this.iptr = 0 // instruction pointer
         this.loops = [] // array to store loops entry pointer value
         this.string = document.getElementById("code").value.replace(/\r?\n|\r|\s|\t/g, '');
-        this.run()
+        this.pause = false;
+        document.getElementById('out').value = '';
+        this.run();
     }
 
-    run() {
-
-        while(this.iptr < this.string.length) {
+    async run() { // async to use await to avoid loop blocking
+        this.pause = false;
+        document.getElementById('play-pause-button').innerHTML = 'II';
+        document.getElementById('play-pause-button').onclick = (e) => { this.stop() };
+        while(this.iptr < this.string.length && !this.pause) {
 
             switch (this.string[this.iptr]) {
                 case ".":
@@ -42,46 +46,72 @@ class BrainfuckProgram {
                     break
                 
                 case "]":
+                    await new Promise(resolve => setTimeout(resolve, 1)); // avoid blocking window with infinite loop
                     this.endloop();
                     break
 
                 default:
                     break;
             }
-
             this.iptr++;
         }
+        document.getElementById('play-pause-button').innerHTML = '▶';
+        document.getElementById('play-pause-button').onclick = (e) => { this.run() };
+    }
+
+    stop() {
+        this.pause = true;
     }
 
     out() { // '.' instruction
         var v = this.variables[this.pointer];
         var char = String.fromCharCode(v);
         console.log(v);
-        document.getElementById('out').innerHTML += char;
-    }
+        document.getElementById('out').value += char;
+    };
 
     in() { // ',' instruction
-        var inp = prompt();
-        this.variables[this.pointer] = inp.charCodeAt(0);
-    }
+        var inpelem = document.getElementById("in");
+        if(inpelem.value) {
+            var inp = inpelem.value[0];
+            inpelem.value = inpelem.value.slice(1, inpelem.value.length);
+            this.variables[this.pointer] = inp.charCodeAt(0);
+        }
+        else {
+            inpelem.classList.add('error-no-value');
+            inpelem.placeholder = 'Input needed';
+            this.stop();
+            inpelem.onkeyup = (e) => {
+                inpelem.classList.remove('error-no-value');
+                this.in();
+                this.run();
+                inpelem.onkeyup = (e) => {};
+                inpelem.placeholder = 'input...';
+            };
+        };
+    };
 
     ptrright() { // '>' intruction | adds 1 to the pointer
         this.pointer++;
         if(!this.variables[this.pointer]) {
             this.variables[this.pointer] = 0;
         }
+        return 0;
     }
 
     ptrleft() { // '<' instruction
         this.pointer -= this.pointer ? 1 : 0;
+        return 0;
     }
 
     add() {
         this.variables[this.pointer] += this.variables[this.pointer] != 255 ? 1 : -255;
+        return 0;
     }
 
     sub() {
         this.variables[this.pointer] -= this.variables[this.pointer] ? 1 : -255;
+        return 0;
     }
 
     newloop() {
@@ -94,6 +124,7 @@ class BrainfuckProgram {
                 this.iptr++
             }
         }
+        return 0;
     }
 
     endloop() {
@@ -104,5 +135,14 @@ class BrainfuckProgram {
         else {
             this.loops.pop()
         }
+        return 0;
     }
 }
+
+var program;
+
+var newprogram = () => {
+    program = new BrainfuckProgram;
+}
+
+// ++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.

@@ -14,15 +14,15 @@
     </div>
 
     <div id="code-part">
-        <textarea id="code" rows="10" cols="250" placeholder="Code goes here..."></textarea>
+        <textarea id="code" rows="10" placeholder="Type your code here"></textarea>
 
         <br>
 
         <div id="bottom-line">
-
-            <button onclick="var x = new BrainfuckProgram()" id="run-button">Run</button>
-
-            <span id="out"></span>
+            <button onclick="newprogram()" id="run-button" title="Execute program" class="control-button">⟳</button>
+			<input type="text" id="in" class="in-out" placeholder="input...">
+            <input type="text" id="out" class="in-out" placeholder="...output">
+            <button id="play-pause-button" title="Play / pause" class="control-button">▶</button>
 
         </div>
 
