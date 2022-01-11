@@ -4,7 +4,7 @@ class BrainfuckProgram {
         this.pointer = 0;
         this.iptr = 0 // instruction pointer
         this.loops = [] // array to store loops entry pointer value
-        this.string = document.getElementById("code").value.replace(/\r?\n|\r|\s|\t/g, '');
+        this.string = document.getElementById("code").value;
         this.pause = false;
         document.getElementById('out').value = '';
         this.run();
