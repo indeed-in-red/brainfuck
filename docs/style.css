@@ -5,6 +5,7 @@ body {
 .page-title {
     text-align: center;
     margin: 3rem 0 3rem 0;
+    position: relative;
 }
 
 #code-part {
@@ -38,17 +39,17 @@ body {
 }
 
 .in-out {
-	border: 3px solid #3b3b3b;
-	width: 100%;
-	border-radius: 6px;
-	padding: 12px;
+    border: 3px solid #3b3b3b;
+    width: 100%;
+    border-radius: 6px;
+    padding: 12px;
     font-size: large;
-	
+
 }
 
 #in {
-	margin-left: 10px;
-	margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #out {
@@ -56,7 +57,7 @@ body {
 }
 
 #bottom-line {
-	display: flex;
+    display: flex;
     margin-top: 10px;
 }
 
@@ -66,4 +67,79 @@ body {
 
 .error-no-value::placeholder {
     color: #b60000;
+}
+
+
+tr.stylized>td, tr.stylized>th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr.stylized>th {
+    text-align: right;
+}
+
+tr.stylized>td:nth-child(even), th:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#variables {
+    display: none;
+}
+
+/* MODAL CODE */
+
+/* The Modal (background) */
+#settings-modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border-radius: 6px;
+    width: 80%;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+/* The Close Button */
+#close-settings {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#close-settings:hover, #close-settings:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#open-settings {
+    position: absolute;
+    right: 0;
+    top: 0;
 }

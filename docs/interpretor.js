@@ -14,7 +14,7 @@ class BrainfuckProgram {
         this.pause = false;
         document.getElementById('play-pause-button').innerHTML = 'II';
         document.getElementById('play-pause-button').onclick = (e) => { this.stop() };
-        while(this.iptr < this.string.length && !this.pause) {
+        while (this.iptr < this.string.length && !this.pause) {
 
             switch (this.string[this.iptr]) {
                 case ".":
@@ -32,11 +32,11 @@ class BrainfuckProgram {
                 case "<":
                     this.ptrleft();
                     break
-                
+
                 case "+":
                     this.add();
                     break
-                
+
                 case "-":
                     this.sub();
                     break
@@ -44,7 +44,7 @@ class BrainfuckProgram {
                 case "[":
                     this.newloop();
                     break
-                
+
                 case "]":
                     await new Promise(resolve => setTimeout(resolve, 1)); // avoid blocking window with infinite loop
                     this.endloop();
@@ -72,7 +72,7 @@ class BrainfuckProgram {
 
     in() { // ',' instruction
         var inpelem = document.getElementById("in");
-        if(inpelem.value) {
+        if (inpelem.value) {
             var inp = inpelem.value[0];
             inpelem.value = inpelem.value.slice(1, inpelem.value.length);
             this.variables[this.pointer] = inp.charCodeAt(0);
@@ -85,7 +85,7 @@ class BrainfuckProgram {
                 inpelem.classList.remove('error-no-value');
                 this.in();
                 this.run();
-                inpelem.onkeyup = (e) => {};
+                inpelem.onkeyup = (e) => { };
                 inpelem.placeholder = 'input...';
             };
         };
@@ -93,7 +93,7 @@ class BrainfuckProgram {
 
     ptrright() { // '>' intruction | adds 1 to the pointer
         this.pointer++;
-        if(!this.variables[this.pointer]) {
+        if (!this.variables[this.pointer]) {
             this.variables[this.pointer] = 0;
         }
         return 0;
@@ -115,12 +115,12 @@ class BrainfuckProgram {
     }
 
     newloop() {
-        if(this.variables[this.pointer] != 0) {
+        if (this.variables[this.pointer] != 0) {
             this.loops.push(this.iptr);
 
         }
         else {
-            while(this.string[this.iptr] != ']') {
+            while (this.string[this.iptr] != ']') {
                 this.iptr++
             }
         }
@@ -128,8 +128,8 @@ class BrainfuckProgram {
     }
 
     endloop() {
-        if(this.variables[this.pointer] != 0) {
-            this.iptr = this.loops[this.loops.length-1]
+        if (this.variables[this.pointer] != 0) {
+            this.iptr = this.loops[this.loops.length - 1]
         }
 
         else {

@@ -3,31 +3,67 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Online Brainfuck Interpreter - Made by Dihellgo and &amp;times;</title>
+    <title>Online Brainfuck Interpreter - Made by Dihellgo and greeegoire</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 
 <body>
-    <div class="page-title" title="page title">
-        <h1>Brainfuck Interpreter</h1>
-    </div>
 
     <div id="code-part">
+        <div class="page-title" title="page title">
+            <h1>Brainfuck Interpreter</h1>
+            <button id="open-settings" class="control-button">⚙</button>
+        </div>
         <textarea id="code" rows="10" placeholder="Type your code here"></textarea>
 
         <br>
 
         <div id="bottom-line">
             <button onclick="newprogram()" id="run-button" title="Execute program" class="control-button">⟳</button>
-			<input type="text" id="in" class="in-out" placeholder="input...">
+            <input type="text" id="in" class="in-out" placeholder="input...">
             <input type="text" id="out" class="in-out" placeholder="...output">
             <button id="play-pause-button" title="Play / pause" class="control-button">▶</button>
 
         </div>
 
+        <div id="variables">
+            <table style="text-align: center;">
+                <tr class="stylized">
+                    <th>Number</th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                </tr>
+                <tr class="stylized">
+                    <th>Value</th>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td></td>
+                    <td>⬆</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+
+
     </div>
 
+    <div id="settings-modal">
+
+        <div class="modal-content">
+            <span id="close-settings">&times;</span>
+            <p>super settings</p>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
     <script src="interpretor.js"></script>
 
 </body>
