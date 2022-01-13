@@ -62,7 +62,7 @@ class BrainfuckProgram {
             }
             this.iptr++;
         }
-        document.getElementById('play-pause-button').innerHTML = '▶';
+        document.getElementById('play-pause-button').innerHTML = '■';
         document.getElementById('play-pause-button').onclick = (e) => { this.run() };
         this.updatevarsarr();
     }
