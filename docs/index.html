@@ -12,7 +12,7 @@
 
     <div id="code-part">
         <div class="page-title" title="page title">
-            <h1>Brainfuck Interpreter</h1>
+            <h1>Online Brainfuck Interpreter</h1>
             <button id="open-settings" class="control-button">⚙</button>
         </div>
         <textarea id="code" rows="10" placeholder="Type your code here"></textarea>
@@ -29,28 +29,22 @@
 
         <div id="variables">
             <table style="text-align: center;">
-                <tr class="stylized">
-                    <th>Number</th>
-                    <th>0</th>
-                    <th>1</th>
-                    <th>2</th>
+                <tr class="stylized" id="numbers">
+                    <th>Memory box</th>
+                    <td>0</td>
                 </tr>
-                <tr class="stylized">
+                <tr class="stylized" id="values">
                     <th>Value</th>
-                    <td>3</td>
-                    <td>1</td>
-                    <td>2</td>
+                    <td>0</td>
                 </tr>
-                <tr>
+                <tr id="pointers">
                     <th></th>
-                    <td></td>
-                    <td>⬆</td>
                     <td></td>
                 </tr>
             </table>
         </div>
 
-
+        <p><em>Help this project by participating at <a href="https://github.com/Dihellgo/Brainfuck" target="_blank" rel="noopener noreferrer">https://github.com/Dihellgo/Brainfuck</a></em></p>
 
     </div>
 
@@ -58,7 +52,26 @@
 
         <div class="modal-content">
             <span id="close-settings">&times;</span>
-            <p>super settings</p>
+            <h1>Settings</h1>
+            <div>
+                <input type="checkbox" name="Infinite loop protection" id="loop-p" checked onclick="settings.loopprotection = !settings.loopprotection;">
+                <label for="loop-p">Infinite loop protection</label>
+            </div>
+
+            <div>
+                <input type="checkbox" name="Execute step by step" id="step-by-step" onclick="settings.stepbystep = !settings.stepbystep;">
+                <label for="step-by-step">Execute step by step</label>
+            </div>
+
+            <div>
+                <input type="number" name="value in milisecond" id="step-value" style="width: 60px;" value="1000" onchange="settings.waitingtime = this.value;">
+                <label for="step-value">Waiting time between each step (in miliseconds)</label>
+            </div>
+            
+            <div>
+                <input type="checkbox" name="Dark mode" id="dark-mode" onclick="this.checked = false; alert('So you want a dark mode, uh ? I want one too, but i\'m too lazy to make one. Want to make it, and participate to this project ? Fork the Github project at \'https:\/\/github.com/dihellgo/Brainfuck\', and submit it !\n- Grégoire')">
+                <label for="dark-mode">Dark mode</label>
+            </div>
         </div>
 
     </div>

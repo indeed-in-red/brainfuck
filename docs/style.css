@@ -32,6 +32,7 @@ body {
     display: inline-block;
     font-size: 16px;
     font-weight: bolder;
+    transition-duration: 0.2s;
 }
 
 .control-button:hover {
@@ -72,7 +73,6 @@ body {
 
 tr.stylized>td, tr.stylized>th {
     border: 1px solid #dddddd;
-    text-align: left;
     padding: 8px;
 }
 
@@ -82,10 +82,6 @@ tr.stylized>th {
 
 tr.stylized>td:nth-child(even), th:nth-child(even) {
     background-color: #dddddd;
-}
-
-#variables {
-    display: none;
 }
 
 /* MODAL CODE */
@@ -121,7 +117,7 @@ tr.stylized>td:nth-child(even), th:nth-child(even) {
     padding: 20px;
     border-radius: 6px;
     width: 80%;
-    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* The Close Button */
@@ -142,4 +138,45 @@ tr.stylized>td:nth-child(even), th:nth-child(even) {
     position: absolute;
     right: 0;
     top: 0;
+}
+
+.line {
+    display: flex;
+}
+
+.line>span {
+    position: relative;
+}
+
+.line>span>p {
+    margin: 0;
+    margin-left: 20px;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: large;
+}
+
+.modal-content>div {
+    margin: 10px;
+}
+
+#variables {
+    text-align: center;
+    width: calc(100% - 20px);
+    margin-top: 20px;
+    padding: 10px;
+    overflow-x: auto;
+    border-radius: 6px;
+    border: 3px solid #3b3b3b;
+    white-space: nowrap;
+}
+
+a {
+    color: #444444;
+}
+
+a:hover {
+    color: #666666;
 }

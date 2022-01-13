@@ -1,2 +1,2 @@
 # Brainfuck
-Create an online Brainfuck interpretor
+Create an online Brainfuck interpreter

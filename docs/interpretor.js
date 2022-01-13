@@ -7,6 +7,7 @@ class BrainfuckProgram {
         this.string = document.getElementById("code").value;
         this.pause = false;
         document.getElementById('out').value = '';
+        document.getElementById('variables').innerHTML = '<table style="text-align: center;"><tr class="stylized" id="numbers"><th>Memory box</th><td>0</td></tr><tr class="stylized" id="values"><th>Value</th><td>0</td></tr><tr id="pointers"><th></th><td>⬆</td></tr></table>';
         this.run();
     }
 
@@ -46,17 +47,24 @@ class BrainfuckProgram {
                     break
 
                 case "]":
-                    await new Promise(resolve => setTimeout(resolve, 1)); // avoid blocking window with infinite loop
+                    if(settings.loopprotection) {
+                        await new Promise(resolve => setTimeout(resolve, 1)); // avoid blocking window with infinite loop
+                    }
                     this.endloop();
                     break
 
                 default:
                     break;
             }
+            if(settings.stepbystep) {
+                await new Promise(resolve => setTimeout(resolve, settings.waitingtime));
+                this.updatevarsarr();
+            }
             this.iptr++;
         }
         document.getElementById('play-pause-button').innerHTML = '▶';
         document.getElementById('play-pause-button').onclick = (e) => { this.run() };
+        this.updatevarsarr();
     }
 
     stop() {
@@ -66,7 +74,6 @@ class BrainfuckProgram {
     out() { // '.' instruction
         var v = this.variables[this.pointer];
         var char = String.fromCharCode(v);
-        console.log(v);
         document.getElementById('out').value += char;
     };
 
@@ -137,6 +144,26 @@ class BrainfuckProgram {
         }
         return 0;
     }
+
+    updatevarsarr() {
+        document.getElementById('variables').innerHTML = '<table style="text-align: center;"><tr class="stylized" id="numbers"><th>Memory box</th><td>0</td></tr><tr class="stylized" id="values"><th>Value</th><td>0</td></tr><tr id="pointers"><th></th><td></td></tr></table>';
+        for(let i = 1; i < this.variables.length; i++) {
+            document.getElementById("numbers").innerHTML += `<td>${i}</td>`;
+            document.getElementById("values").innerHTML += `<td>0</td>`;
+            document.getElementById("pointers").innerHTML += `<td></td>`;
+        }
+        for(let j = 0; j < this.variables.length; j++) {
+            document.getElementById('values').getElementsByTagName('td')[j].innerHTML = this.variables[j];
+        }
+        console.log(this.pointer)
+        document.getElementById('pointers').getElementsByTagName('td')[this.pointer].innerHTML = "⬆";
+    }
+}
+
+settings = {
+    'loopprotection': true,
+    'stepbystep': false,
+    'waitingtime': 10000
 }
 
 var program;
