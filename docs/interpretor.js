@@ -163,7 +163,7 @@ class BrainfuckProgram {
 settings = {
     'loopprotection': true,
     'stepbystep': false,
-    'waitingtime': 10000
+    'waitingtime': 1000
 }
 
 var program;
