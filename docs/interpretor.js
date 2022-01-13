@@ -7,7 +7,7 @@ class BrainfuckProgram {
         this.string = document.getElementById("code").value;
         this.pause = false;
         document.getElementById('out').value = '';
-        document.getElementById('variables').innerHTML = '<table style="text-align: center;"><tr class="stylized" id="numbers"><th>Memory box</th><td>0</td></tr><tr class="stylized" id="values"><th>Value</th><td>0</td></tr><tr id="pointers"><th></th><td>⬆</td></tr></table>';
+        document.getElementById('variables').innerHTML = '<table style="text-align: center;"><tr class="stylized" id="numbers"><th>Memory cell</th><td>0</td></tr><tr class="stylized" id="values"><th>Value</th><td>0</td></tr><tr id="pointers"><th></th><td>⬆</td></tr></table>';
         this.run();
     }
 
@@ -146,7 +146,7 @@ class BrainfuckProgram {
     }
 
     updatevarsarr() {
-        document.getElementById('variables').innerHTML = '<table style="text-align: center;"><tr class="stylized" id="numbers"><th>Memory box</th><td>0</td></tr><tr class="stylized" id="values"><th>Value</th><td>0</td></tr><tr id="pointers"><th></th><td></td></tr></table>';
+        document.getElementById('variables').innerHTML = '<table style="text-align: center;"><tr class="stylized" id="numbers"><th>Memory cell</th><td>0</td></tr><tr class="stylized" id="values"><th>Value</th><td>0</td></tr><tr id="pointers"><th></th><td></td></tr></table>';
         for(let i = 1; i < this.variables.length; i++) {
             document.getElementById("numbers").innerHTML += `<td>${i}</td>`;
             document.getElementById("values").innerHTML += `<td>0</td>`;
