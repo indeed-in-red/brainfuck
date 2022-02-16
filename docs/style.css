@@ -180,3 +180,15 @@ a {
 a:hover {
     color: #666666;
 }
+
+@media (prefers-color-scheme: dark) {
+    body, #close-settings {
+        background-color: #000000;
+        color:#bee478
+    }
+
+    #code, .in-out {
+        background-color: #17241f;
+        color:#bee478
+    }
+}
