@@ -1,2 +1,4 @@
 # Brainfuck
-Create an online Brainfuck interpreter
+Create an online interpreter for the brainfuck programming language
+
+Go to [indeed-in-red.github.io/brainfuck] and start coding !
